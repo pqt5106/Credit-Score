@@ -9,12 +9,50 @@ from page_config import setup_page
 # =========================
 setup_page()
 
+import os
+
 # =========================
 # MODEL PARAMETERS
 # =========================
-SCALE_PATH = "/Users/thinh/VSC Workspace/Py/da prj/input/aft_scale_parameter.csv"
-COEFF_PATH = "/Users/thinh/VSC Workspace/Py/da prj/input/aft_coefficient_result.csv"
-TRAIN_PATH = "/Users/thinh/VSC Workspace/Py/da prj/input/data_loan_dev_80_stratified.csv"
+def get_path(filename, local_abs_path):
+    # 1. Check relative to current working directory (Streamlit Cloud standard)
+    cwd_input = os.path.join("input", filename)
+    if os.path.exists(cwd_input):
+        return os.path.abspath(cwd_input)
+        
+    cwd_same = filename
+    if os.path.exists(cwd_same):
+        return os.path.abspath(cwd_same)
+
+    # 2. Check relative to script directory
+    dir_path = os.path.dirname(os.path.abspath(__file__))
+    
+    # Same directory as app.py
+    path1 = os.path.join(dir_path, filename)
+    if os.path.exists(path1):
+        return path1
+        
+    # input/ folder in the same directory as app.py
+    path2 = os.path.join(dir_path, "input", filename)
+    if os.path.exists(path2):
+        return path2
+        
+    # repo root input/ folder (if app.py is in dashboard/)
+    path3 = os.path.join(dir_path, "..", "input", filename)
+    if os.path.exists(path3):
+        return os.path.abspath(path3)
+
+    # local relative path from dashboard/ (../../da prj/input/)
+    path4 = os.path.join(dir_path, "..", "..", "da prj", "input", filename)
+    if os.path.exists(path4):
+        return os.path.abspath(path4)
+        
+    # Fallback to absolute path
+    return local_abs_path
+
+SCALE_PATH = get_path("aft_scale_parameter.csv", "/Users/thinh/VSC Workspace/Py/da prj/input/aft_scale_parameter.csv")
+COEFF_PATH = get_path("aft_coefficient_result.csv", "/Users/thinh/VSC Workspace/Py/da prj/input/aft_coefficient_result.csv")
+TRAIN_PATH = get_path("data_loan_dev_80_stratified.csv", "/Users/thinh/VSC Workspace/Py/da prj/input/data_loan_dev_80_stratified.csv")
 
 @st.cache_data
 def load_data():
