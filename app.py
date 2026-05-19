@@ -236,11 +236,9 @@ with tab1:
         with top_right:
             band_label, band_color, band_bg = score_band(score_int)
             score_color = band_color
-            PD_val = 1 - S_val
             eta_months = eta
 
             mod_band_label, mod_band_color, mod_band_bg = score_band(score_wi_int)
-            mod_PD_val = 1 - S_wi
             mod_eta_months = eta_wi
             
             delta_str = f"{delta_score:+.1f} pts"
@@ -254,7 +252,7 @@ with tab1:
                         <div class="score-number" style="color:{score_color}; font-size:48px;">{score_int}</div>
                         <div><span class="score-band" style="color:{band_color}; background:{band_bg}; font-size:12px; padding:4px 8px;">{band_label}</span></div>
                         <div style="font-size:14px; margin-top:12px; color:var(--inline-lbl); line-height:1.4;">
-                            <div>Default Probability: <span style="font-size:16px; font-weight:bold; color:var(--inline-val);">{PD_val:.1%}</span></div>
+                            <div>Survival Probability: <span style="font-size:16px; font-weight:bold; color:var(--inline-val);">{S_val:.1%}</span></div>
                             <div>Median Survival Time: <span style="font-size:16px; font-weight:bold; color:var(--inline-val);">{eta_months:.1f}m</span></div>
                         </div>
                     </div>
@@ -264,7 +262,7 @@ with tab1:
                         <div class="score-number" style="color:{mod_band_color}; font-size:56px;">{score_wi_int}</div>
                         <div><span class="score-band" style="color:{mod_band_color}; background:{mod_band_bg}; font-size:14px; padding:4px 10px;">{mod_band_label}</span></div>
                         <div style="font-size:14px; margin-top:12px; color:var(--inline-lbl); line-height:1.4;">
-                            <div>Default Probability: <span style="font-size:16px; font-weight:bold; color:var(--inline-val);">{mod_PD_val:.1%}</span></div>
+                            <div>Survival Probability: <span style="font-size:16px; font-weight:bold; color:var(--inline-val);">{S_wi:.1%}</span></div>
                             <div>Median Survival Time: <span style="font-size:16px; font-weight:bold; color:var(--inline-val);">{mod_eta_months:.1f}m</span></div>
                         </div>
                     </div>
