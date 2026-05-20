@@ -169,7 +169,7 @@ with tab1:
             mod_loan_amount = st.slider(f"Loan Amount (USD) [Original: {loan_amount_raw}]", 4000, 120000, int(loan_amount_raw), 500, key="mod_loan")
             mod_term_val = st.select_slider(f"Loan Term (Months) [Original: {term_val}]", options=[36, 60], value=int(term_val), key="mod_term_slider")
             mod_interest = st.slider(f"Interest Rate (%) [Original: {interest_rate}]", 5.0, 25.0, float(interest_rate), 0.1, key="mod_int")
-            mod_annual_income = st.slider(f"Annual Income (USD) [Original: {annual_income}]", 7000, 690000, int(annual_income), 1000, key="mod_income")
+            mod_annual_income = annual_income
             
             mod_term = 1 if mod_term_val == 60 else 0
             mod_monthly_rate = (mod_interest / 100) / 12
