@@ -57,10 +57,10 @@ def fico_to_stage(score):
 # SCORE BAND
 # =========================
 def score_band(s):
-    if s < 450:   return ("VERY POOR",  "var(--band-vp-text)", "var(--band-vp-bg)")
-    elif s < 550: return ("POOR",       "var(--band-p-text)",  "var(--band-p-bg)")
-    elif s < 650: return ("FAIR",       "var(--band-f-text)",  "var(--band-f-bg)")
-    elif s < 750: return ("GOOD",       "var(--band-g-text)",  "var(--band-g-bg)")
+    if s < 580:   return ("POOR",  "var(--band-vp-text)", "var(--band-vp-bg)")
+    elif s < 670: return ("FAIR",       "var(--band-p-text)",  "var(--band-p-bg)")
+    elif s < 740: return ("GOOD",       "var(--band-f-text)",  "var(--band-f-bg)")
+    elif s < 800: return ("VERY GOOD",       "var(--band-g-text)",  "var(--band-g-bg)")
     else:         return ("EXCELLENT",  "var(--band-e-text)",  "var(--band-e-bg)")
 
 # =========================
